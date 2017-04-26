@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+html = Topic.create(name: "HTML")
+
+10.times do
+  html.questions.create(content: "aaaaa")
+end
+
+Topic.create(name: "CSS")
+Topic.create(name: "Javascript")
