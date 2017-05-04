@@ -7,6 +7,6 @@ class Api::TopicsController < ApplicationController
   def show
     topic = Topic.find(params[:id])
     questions = topic.questions
-    render json: questions
+    render json: questions, include: :options
   end
 end
