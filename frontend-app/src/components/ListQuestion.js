@@ -12,6 +12,7 @@ class ListQuestion extends React.Component {
       listQuestion: [],
       step: 0
     }
+
     this.startQuiz = this.startQuiz.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.prevQuestion = this.prevQuestion.bind(this);
@@ -19,23 +20,17 @@ class ListQuestion extends React.Component {
   }
 
   componentWillMount() {
-    // let id = this.props.match.params.id;
-    // $.get("http://localhost:3000/api/topics/" + id, (data, status) => {
-    //   console.log(data);
-    //   this.setState({
-    //     listQuestion: data
-    //   })
-    // });
+    let id = this.props.match.params.id;
+    $.get("http://localhost:3000/api/topics/" + id, (data) => {
+      this.setState({
+        listQuestion: data
+      });
+    });
   }
 
   startQuiz() {
-    let id = this.props.match.params.id;
-    $.get("http://localhost:3000/api/topics/" + id, (data, status) => {
-      console.log(data);
-      this.setState({
-        listQuestion: data,
-        step: 1
-      });
+    this.setState({
+      step: 1
     });
   }
 
@@ -63,23 +58,34 @@ class ListQuestion extends React.Component {
       return <Question key={index} question={question} index={index} />
     });
 
-    let startButton = null;
+    let startQuiz = null;
     let nextButton = null;
     let backButton = null;
+    let submitPhase = null;
 
+    // start quiz
     if (this.state.step === 0) {
-      startButton = <button onClick={this.startQuiz}>Start the quiz</button>;
+      startQuiz = (
+        <div>
+          <h1>This quiz has {this.state.listQuestion.length} questions</h1>
+          <button onClick={this.startQuiz}>Start the quiz</button>
+        </div>
+      );
     }
 
+    // next, back question button
     if (this.state.step > 0 && this.state.step <= this.state.listQuestion.length) {
       nextButton = <button onClick={this.nextQuestion}>Next</button>;
-      backButton = <button onClick={this.prevQuestion}>Back</button>;
+      if (this.state.step > 1) {
+        backButton = <button onClick={this.prevQuestion}>Back</button>;
+      }
     }
 
-    let submitPhase = null;
+    // change answer, submit button
     if (this.state.step > this.state.listQuestion.length) {
       submitPhase = (
         <div>
+          <h2>Review your answers</h2>
           {questions}
           <button onClick={this.changeAnswers}>Change Answers</button>
           <button>Submit</button>
@@ -89,8 +95,7 @@ class ListQuestion extends React.Component {
 
     return (
       <div className="question-component">
-        <h1>10 questions</h1>
-        {startButton}
+        {startQuiz}
         {questions[this.state.step - 1]}
         {backButton}
         {nextButton}

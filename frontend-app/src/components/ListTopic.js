@@ -14,7 +14,7 @@ class ListTopic extends React.Component {
 	}
 
 	componentWillMount() {
-		$.get('http://localhost:3000/api/topics', (data, status) => {
+		$.get('http://localhost:3000/api/topics', (data) => {
        	this.setState({
        		listTopic: data
        	})
