@@ -34,7 +34,7 @@ class Question extends React.Component {
 
     return (
       <div className="topic-component">
-	  		<p>{this.props.question.content}</p>
+	  		<p>{this.props.index + 1}.{this.props.question.content}</p>
 	  		<form action="">{options}</form>
       </div>
     );
