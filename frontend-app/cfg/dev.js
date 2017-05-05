@@ -23,8 +23,8 @@ let config = Object.assign({}, baseConfig, {
       searchResolveModulesDirectories: false
     }),
     new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
+      $: "jquery",
+      jQuery: "jquery"
     })
   ],
   module: defaultSettings.getDefaultModules()

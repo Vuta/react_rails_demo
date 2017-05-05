@@ -5,11 +5,11 @@ import {
   HashRouter,
   Route,
 } from 'react-router-dom';
-
 import App from './components/Main';
 import ListTopic from './components/ListTopic';
 import ListQuestion from './components/ListQuestion';
 import Question from './components/Question';
+
 // Render the main component into the dom
 ReactDOM.render((
 	<HashRouter>

@@ -113,5 +113,109 @@ html_questions.each do |content|
 end
 
 
-Topic.create(name: "CSS")
+css = Topic.create(name: "CSS")
+
+css_questions = [
+	{
+		question: "What does CSS stand for?",
+		options: [
+			["Creative Style Sheets", false],
+			["Colorful Style Sheets", false],
+			["Cascading Style Sheets", true],
+			["Computer Style Sheets", false]
+		]
+	},
+
+	{
+		question: "What is the correct HTML for referring to an external style sheet?",
+		options: [
+			["<style src='mystyle.css'>", false],
+			["<link rel='stylesheet' type='text/css' href='mystyle.css'>", true],
+			["<stylesheet>mystyle.css</stylesheet>", false]
+		]
+	},
+
+	{
+		question: "Where in an HTML document is the correct place to refer to an external style sheet?",
+		options: [
+			["At the end of the document", false],
+			["In the <head> section", true],
+			["In the <body> section", false]
+		]
+	},
+
+	{
+		question: "Which HTML tag is used to define an internal style sheet?",
+		options: [
+			["<script>", false],
+			["<css>", false],
+			["<style>", true]
+		]
+	},
+
+	{
+		question: "Which HTML attribute is used to define inline styles?",
+		options: [
+			["class", false],
+			["style", true],
+			["font", false],
+			["styles", false]
+		]
+	},
+
+	{
+		question: "Which is the correct CSS syntax?",
+		options: [
+			["body {color: black;}", true],
+			["{body;color:black;}", false],
+			["body:color=black;", false],
+			["{body:color=black;}", false]
+		]
+	},
+
+	{
+		question: "How do you insert a comment in a CSS file?",
+		options: [
+			["// this is a comment //", false],
+			["/* this is a comment */", true],
+			["// this is a comment", false],
+			["' this is a comment", false]
+		]
+	},
+
+	{
+		question: "Which property is used to change the background color?",
+		options: [
+			["bgcolor", false],
+			["color", false],
+			["background-color", true]
+		]
+	},
+
+	{
+		question: "How do you add a background color for all <h1> elements?",
+		options: [
+			["h1 {background-color:#FFFFFF;}", true],
+			["h1.all {background-color:#FFFFFF;}", false],
+			["all.h1 {background-color:#FFFFFF;}", false]
+		]
+	},
+
+	{
+		question: "Which CSS property is used to change the text color of an element?",
+		options: [
+			["color", true],
+			["text-color", false],
+			["fgcolor", false]
+		]
+	}
+]
+
+css_questions.each do |content|
+	question = css.questions.create(content: content[:question])
+	content[:options].each do |option, is_right_choice|
+		question.options.create(content: option, is_right_choice: is_right_choice)
+	end
+end
+
 Topic.create(name: "Javascript")
