@@ -5,24 +5,17 @@ class Question extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.setAnswer = this.setAnswer.bind(this);
-	}
-
-	setAnswer(event) {
-		this.setState({
-			answer: event.target.value,
-		});
 	}
 
   render() {
   	let options = this.props.question.options.map((option, index) => {
-	  	return <Option key={index} option={option} setAnswer={this.setAnswer} />
+	  	return <Option key={option.id} option={option} setAnswer={() => {this.props.setAnswer(option)}} isChecked={this.props.question.answer == option} />
 		});
 
     return (
       <div className="topic-component">
 	  		<h4>{this.props.index + 1}. {this.props.question.content}</h4>
-	  		<form action="">{options}</form>
+	  		{options}
       </div>
     );
   }
